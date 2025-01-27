@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="display-4">Deletar Produto</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if protected_error %}
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Erro ao Deletar</h4>
+            <p>Não é possível excluir o produto <strong>{{ object.title }}</strong> porque ele está sendo referenciado em outro lugar.</p>
+            <hr>
+            <p class="mb-0">Por favor, remova todas as referências antes de tentar excluir novamente.</p>
+        </div>
+    {% else %}
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Tem certeza de que deseja excluir o produto <strong>{{ object.title }}</strong>?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Deletar</button>
+                </form>
+                <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Cancelar e Voltar para a Lista de Produtos</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
