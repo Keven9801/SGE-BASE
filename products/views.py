@@ -25,6 +25,7 @@ class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         serie_number = self.request.GET.get('serie_number')
         category = self.request.GET.get('category')
         brand = self.request.GET.get('brand')
+        location = self.request.GET.get('location')
 
         if title:
             queryset = queryset.filter(title__icontains=title)
@@ -34,6 +35,8 @@ class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
             queryset = queryset.filter(category_id=category)
         if brand:
             queryset = queryset.filter(brand__id=brand)
+        if location:
+            queryset = queryset.filter(location__icontains=location) 
 
         return queryset
 
