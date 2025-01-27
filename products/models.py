@@ -10,6 +10,7 @@ class Product(models.Model):
     description = models.TextField(null=True, blank=True)
     serie_number = models.CharField(max_length=200, null=True, blank=True)
     cost_price = models.DecimalField(max_digits=20, decimal_places=2)
+    location = models.CharField(max_length=20, null=True, blank=True)
     selling_price = models.DecimalField(max_digits=20, decimal_places=2)
     quantity = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)

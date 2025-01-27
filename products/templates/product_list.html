@@ -18,6 +18,7 @@
         <div class="input-group">
           <input type="text" class="form-control" name="title" placeholder="Título" value="{{ request.GET.title }}">
           <input type="text" class="form-control" name="serie_number" placeholder="Número de Série" value="{{ request.GET.serie_number }}">
+          <input type="text" class="form-control" name="location" placeholder="Localização" value="{{ request.GET.location }}"> <!-- Campo de Localização -->
           <button type="submit" class="btn btn-primary">
             <i class="bi bi-search"></i>
           </button>
@@ -69,6 +70,7 @@
           <th>Preço de Venda</th>
           <th>Número de Série</th>
           <th>Quantidade</th>
+          <th>Localização</th> <!-- Adicionando a coluna Localização -->
           <th>Ações</th>
         </tr>
       </thead>
@@ -87,6 +89,7 @@
             <td>R$ {{ product.selling_price }}</td>
             <td>{{ product.serie_number }}</td>
             <td>{{ product.quantity }}</td>
+            <td>{{ product.location }}</td> <!-- Adicionando o campo Localização -->
             <td>
               <a href="{% url 'product_detail' product.id %}" class="btn btn-info btn-sm">
                 <i class="bi bi-eye"></i>
